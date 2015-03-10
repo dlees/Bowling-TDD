@@ -4,8 +4,6 @@ public class FrameDriver {
 	
 	private int pinsHitRoll1 = 0;
 	
-	
-	
 	public FrameDriver(BowlingDisplay display) {
 		this.display = display;
 	}
