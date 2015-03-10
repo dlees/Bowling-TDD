@@ -1,18 +1,24 @@
 
 public class FrameDriver {
-
+	private BowlingDisplay display;
+	
+	private int pinsHitRoll1 = 0;
+	
+	
+	
 	public FrameDriver(BowlingDisplay display) {
-		// TODO Auto-generated constructor stub
+		this.display = display;
 	}
 
 	public void performRoll1(int frameNum, int pinsHit) {
-		// TODO Auto-generated method stub
-		
+		pinsHitRoll1 = pinsHit;
+		display.setRoll1(frameNum, pinsHit);
 	}
 
 	public void performRoll2(int frameNum, int pinsHit) {
-		// TODO Auto-generated method stub
-		
+		display.setRoll2(frameNum, pinsHit);
+		display.setScore(frameNum, pinsHitRoll1 + pinsHit);	
+		pinsHitRoll1 = 0;
 	}
 
 }

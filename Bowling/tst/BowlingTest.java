@@ -19,8 +19,7 @@ public class BowlingTest {
 		
 		int expected = ROLL_1 + ROLL_2; 
 		
-		assertEquals(expected, display.getScore(0));
-		
+		assertEquals(expected, display.getScore(0));		
 	}
 
 }
