@@ -4,6 +4,7 @@ public class MockedBowlingDisplay extends BowlingDisplay {
 	int[] roll1Frames = new int[10];
 	int[] roll2Frames = new int[10];;
 	int[] scoreFrames = new int[10];;
+	int[] markFrames = new int[10];
 	
 	@Override
 	public void setRoll1(int frameNum, int roll1) {
@@ -22,7 +23,7 @@ public class MockedBowlingDisplay extends BowlingDisplay {
 
 	@Override
 	public void setMark(int frameNum, int Mark) {
-		// TODO Auto-generated method stub
+		markFrames[frameNum] = Mark;
 
 	}
 
@@ -48,6 +49,10 @@ public class MockedBowlingDisplay extends BowlingDisplay {
 	
 	public int getScore(int frame) {
 		return scoreFrames[frame];
+	}
+
+	public Object getMarks(int frame) {
+		return markFrames[frame];
 	}
 
 }

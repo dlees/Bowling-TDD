@@ -5,6 +5,8 @@ import org.junit.Test;
 
 public class BowlingTest {
 
+	private static final int SPARE_FRAME_ROLL_2 = 7;
+	private static final int SPARE_FRAME_ROLL_1 = 3;
 	private static final int FRAME_1_ROLL_2 = 5;
 	private static final int FRAME_1_ROLL_1 = 4;
 	private static final int FRAME_0_ROLL_2 = 4;
@@ -39,5 +41,20 @@ public class BowlingTest {
 		
 		assertEquals(expected, display.getScore(1));		
 	}
+	
+	@Test
+	public void a_frame_is_marked_spare_if_second_roll_is_10() {
+		MockedBowlingDisplay display = new MockedBowlingDisplay();
+		
+		FrameDriver frame = new FrameDriver(display);
+		
+		frame.performRoll1(0, SPARE_FRAME_ROLL_1);
+		frame.performRoll2(0, SPARE_FRAME_ROLL_2);
+
+		int expected = BowlingDisplay.SPARE; 
+		
+		assertEquals(expected, display.getMarks(0));		
+	}
+	
 
 }
