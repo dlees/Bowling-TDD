@@ -16,6 +16,10 @@ public class FrameDriver {
 	public void performRoll2(int frameNum, int pinsHit) {		
 		score += pinsHit;
 		
+		if (score == 10) {
+			display.setMark(frameNum, BowlingDisplay.SPARE);
+		}
+		
 		display.setRoll2(frameNum, pinsHit);
 		display.setScore(frameNum, score);	
 	}
