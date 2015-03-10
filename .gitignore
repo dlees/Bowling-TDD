@@ -9,8 +9,8 @@
 
 *.project
 *.classpath
-.metadata\*
-Bowling\.settings\*
+*.metadata\*
+*Bowling\.settings\*
 
 # Packages #
 ############
