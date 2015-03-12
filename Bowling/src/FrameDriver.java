@@ -19,6 +19,10 @@ public class FrameDriver {
 			last_was_spare = false;
 		}
 		
+		if (pinsHit == 10) {
+			display.setMark(frameNum, BowlingDisplay.STRIKE);			
+		}
+		
 	}
 
 	public void performRoll2(int frameNum, int pinsHit) {		
