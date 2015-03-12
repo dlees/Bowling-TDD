@@ -5,6 +5,7 @@ import org.junit.Test;
 
 public class BowlingTest {
 
+	private static final int STRIKE_ROLL = 10;
 	private static final int SPARE_FRAME_ROLL_2 = 7;
 	private static final int SPARE_FRAME_ROLL_1 = 3;
 	private static final int FRAME_1_ROLL_2 = 5;
@@ -70,7 +71,6 @@ public class BowlingTest {
 		assertEquals(expected, display.getMarks(0));		
 	}
 	
-
 	@Test
 	public void a_spares_value_is_10_plus_the_first_roll_of_next_frame() {
 		MockedBowlingDisplay display = new MockedBowlingDisplay();
@@ -82,6 +82,21 @@ public class BowlingTest {
 		frame.performRoll1(1, FRAME_1_ROLL_1);
 
 		int expected = 10 + FRAME_1_ROLL_1; 
+		
+		assertEquals(expected, display.getScore(0));		
+	}
+	
+	@Test
+	public void a_spares_value_before_a_strike_is_20() {
+		MockedBowlingDisplay display = new MockedBowlingDisplay();
+		
+		FrameDriver frame = new FrameDriver(display);
+
+		frame.performRoll1(0, SPARE_FRAME_ROLL_1);
+		frame.performRoll2(0, SPARE_FRAME_ROLL_2);
+		frame.performRoll1(1, STRIKE_ROLL);
+
+		int expected = 20; 
 		
 		assertEquals(expected, display.getScore(0));		
 	}
