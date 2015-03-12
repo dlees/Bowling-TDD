@@ -113,5 +113,21 @@ public class BowlingTest {
 		
 		assertEquals(expected, display.getMarks(0));		
 	}
-	
+
+	@Test
+	public void two_spares_in_a_row_are_marked_spare() {
+		MockedBowlingDisplay display = new MockedBowlingDisplay();
+		
+		FrameDriver frame = new FrameDriver(display);
+		
+		frame.performRoll1(0, SPARE_FRAME_ROLL_1);
+		frame.performRoll2(0, SPARE_FRAME_ROLL_2);
+		frame.performRoll1(1, SPARE_FRAME_ROLL_1);
+		frame.performRoll2(1, SPARE_FRAME_ROLL_2);
+
+		int expected = BowlingDisplay.SPARE; 
+		
+		assertEquals(expected, display.getMarks(0));	
+		assertEquals(expected, display.getMarks(1));		
+	}
 }
