@@ -1,5 +1,3 @@
-import java.awt.DisplayMode;
-
 
 public class Frame {
 	private int firstRoll = 0;

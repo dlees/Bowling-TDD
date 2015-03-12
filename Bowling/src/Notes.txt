@@ -16,4 +16,10 @@ I realize maybe using triangulation more earlier would’ve caught this.
 
 -After refactoring the Frame class out, I’m not liking this. It seems awful. 
 
-
+-After Strike, Strike, NoMark -- all tests done and passing
+Honestly, I was hesitant about an hour ago (before/during the big refactor), 
+but it seemed to work out really well. The final frame was a lot easier than I thought it would be
+and I probably wouldn't have came up with this solution without TDD.
+TDD definitely helped me think of exactly what the algorithm I needed to come up with one step at a time.
+ 
+It's definitely not the prettiest code, but it's alright. 
