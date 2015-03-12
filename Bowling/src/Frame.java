@@ -34,6 +34,8 @@ public class Frame {
 	public int getFinalMark() {
 		if (thirdRoll == 10) {
 			return BowlingDisplay.STRIKE;
+		} else if (secondRoll + thirdRoll == 10) {
+			return BowlingDisplay.SPARE;
 		}
 		return 0;			
 	}

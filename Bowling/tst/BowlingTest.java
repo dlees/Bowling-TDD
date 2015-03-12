@@ -282,6 +282,27 @@ public class BowlingTest {
 		assertEquals(expectedMark, display.getFinalMark());
 	}
 	
+	@Test
+	public void last_frame_is_strike_and_spare() {
+		MockedBowlingDisplay display = new MockedBowlingDisplay();
+		
+		FrameDriver frame = new FrameDriver(display);
+
+		getToTenth(frame);
+		frame.performRoll1(9, STRIKE_ROLL);
+		frame.performRoll2(9, SPARE_FRAME_ROLL_1);
+		frame.performFinalRoll(SPARE_FRAME_ROLL_2);
+
+		assertEquals(SPARE_FRAME_ROLL_2, display.getFinalRoll());
+
+		int expected = 283;
+		assertEquals(expected, display.getScore(9));
+		
+		int expectedMark = BowlingDisplay.STRIKE; 
+		assertEquals(expectedMark, display.getMarks(9));
+		assertEquals(BowlingDisplay.SPARE, display.getFinalMark());
+	}
+	
 	private void getToTenth(FrameDriver frame) {
 		frame.performRoll1(0, STRIKE_ROLL);
 		frame.performRoll1(1, STRIKE_ROLL);
