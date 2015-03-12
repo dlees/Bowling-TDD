@@ -69,5 +69,20 @@ public class BowlingTest {
 		
 		assertEquals(expected, display.getMarks(0));		
 	}
+	
 
+	@Test
+	public void a_spares_value_is_10_plus_the_first_roll_of_next_frame() {
+		MockedBowlingDisplay display = new MockedBowlingDisplay();
+		
+		FrameDriver frame = new FrameDriver(display);
+
+		frame.performRoll1(0, SPARE_FRAME_ROLL_1);
+		frame.performRoll2(0, SPARE_FRAME_ROLL_2);
+		frame.performRoll1(1, FRAME_1_ROLL_1);
+
+		int expected = 10 + FRAME_1_ROLL_1; 
+		
+		assertEquals(expected, display.getScore(0));		
+	}
 }
