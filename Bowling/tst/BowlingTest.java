@@ -142,7 +142,6 @@ public class BowlingTest {
 		
 		assertEquals(expected, display.getMarks(0));		
 	}
-
 	
 	@Test
 	public void a_strikes_value_is_10_plus_the_next_two_rolls() {
@@ -152,12 +151,12 @@ public class BowlingTest {
 
 		frame.performRoll1(0, STRIKE_ROLL);
 		frame.performRoll1(1, FRAME_1_ROLL_1);
-		frame.performRoll1(1, FRAME_1_ROLL_2);
+		frame.performRoll2(1, FRAME_1_ROLL_2);
 
 		int expected = 10 + FRAME_1_ROLL_1 + FRAME_1_ROLL_2; 		
 		assertEquals(expected, display.getScore(0));	
 		
-		expected += FRAME_1_ROLL_1 + FRAME_0_ROLL_2; 
+		expected += FRAME_1_ROLL_1 + FRAME_1_ROLL_2; 
 		assertEquals(expected, display.getScore(1));		
 	}
 	
