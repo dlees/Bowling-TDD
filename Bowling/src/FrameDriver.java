@@ -1,7 +1,7 @@
 
 public class FrameDriver {
 	private BowlingDisplay display;
-	
+	private int firstRoll = 0;
 	private int score = 0;
 	private boolean last_was_spare = false;
 	
@@ -10,6 +10,7 @@ public class FrameDriver {
 	}
 
 	public void performRoll1(int frameNum, int pinsHit) {
+		firstRoll = pinsHit;
 		score += pinsHit;
 		display.setRoll1(frameNum, pinsHit);
 		
@@ -28,7 +29,7 @@ public class FrameDriver {
 	public void performRoll2(int frameNum, int pinsHit) {		
 		score += pinsHit;
 		
-		if (score == 10) {
+		if (firstRoll + pinsHit == 10) {
 			display.setMark(frameNum, BowlingDisplay.SPARE);
 			last_was_spare = true;
 		}
