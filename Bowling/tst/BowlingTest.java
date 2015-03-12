@@ -43,7 +43,7 @@ public class BowlingTest {
 	}
 	
 	@Test
-	public void a_frame_is_marked_spare_if_second_roll_is_10() {
+	public void a_frame_is_marked_spare_if_frame_total_is_10() {
 		MockedBowlingDisplay display = new MockedBowlingDisplay();
 		
 		FrameDriver frame = new FrameDriver(display);
@@ -55,6 +55,19 @@ public class BowlingTest {
 		
 		assertEquals(expected, display.getMarks(0));		
 	}
-	
+
+	@Test
+	public void a_frame_is_not_marked_frame_score_is_not_10() {
+		MockedBowlingDisplay display = new MockedBowlingDisplay();
+		
+		FrameDriver frame = new FrameDriver(display);
+		
+		frame.performRoll1(0, FRAME_0_ROLL_1);
+		frame.performRoll2(0, FRAME_0_ROLL_2);
+
+		int expected = 0; 
+		
+		assertEquals(expected, display.getMarks(0));		
+	}
 
 }
