@@ -1,0 +1,19 @@
+-After 2nd Test: I’m already seeing a refactoring involving Frames. 
+I can see Frame driver holding an array of them, and summing up their scores.  
+I see them knowing their own scores. 
+But, since what I have now works fine, I should just keep that. 
+After all, if there weren’t any more reqs this would be perfect. 
+Additionally, I’m not exactly sure how a Frame class would work. 
+Future tests will hopefully see this come out.  Should do spares next…
+
+-After “Strike after Spare Passes”, 
+I’m honestly even more confused on how the frame system should work than I was after the 2nd test. 
+Honestly, the guideline “You know when to refactor when it’s harder to fake it than to implement it right” isn’t helping. 
+It’s easier to keep going with what I have for now at least, but it’s so ugly I think.
+
+-After “Test 2 spares in a row”. 
+I realize maybe using triangulation more earlier would’ve caught this.
+
+-After refactoring the Frame class out, I’m not liking this. It seems awful. 
+
+
