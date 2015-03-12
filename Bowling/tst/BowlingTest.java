@@ -6,12 +6,12 @@ import org.junit.Test;
 public class BowlingTest {
 
 	private static final int STRIKE_ROLL = 10;
-	private static final int SPARE_FRAME_ROLL_2 = 7;
 	private static final int SPARE_FRAME_ROLL_1 = 3;
-	private static final int FRAME_1_ROLL_2 = 5;
-	private static final int FRAME_1_ROLL_1 = 4;
-	private static final int FRAME_0_ROLL_2 = 4;
+	private static final int SPARE_FRAME_ROLL_2 = 7;
 	private static final int FRAME_0_ROLL_1 = 1;
+	private static final int FRAME_0_ROLL_2 = 4;
+	private static final int FRAME_1_ROLL_1 = 4;
+	private static final int FRAME_1_ROLL_2 = 5;
 
 	@Test
 	public void frame_with_no_mark_is_sum_of_rolls() {
@@ -28,19 +28,31 @@ public class BowlingTest {
 	}
 
 	@Test
-	public void frames_score_is_calculated_based_on_previous_score() {
+	public void frames_score_is_calculated_based_on_previous_frames() {
 		MockedBowlingDisplay display = new MockedBowlingDisplay();
 		
 		FrameDriver frame = new FrameDriver(display);
+
+		frame.performRoll1(0, SPARE_FRAME_ROLL_1);
+		frame.performRoll2(0, SPARE_FRAME_ROLL_2);
+		frame.performRoll1(1, SPARE_FRAME_ROLL_1);
+		frame.performRoll2(1, SPARE_FRAME_ROLL_2);
+		frame.performRoll1(2, FRAME_0_ROLL_1);
+		frame.performRoll2(2, FRAME_0_ROLL_2);
+		frame.performRoll1(3, FRAME_1_ROLL_1);
+		frame.performRoll2(3, FRAME_1_ROLL_2);
 		
-		frame.performRoll1(0, FRAME_0_ROLL_1);
-		frame.performRoll2(0, FRAME_0_ROLL_2);
-		frame.performRoll1(1, FRAME_1_ROLL_1);
-		frame.performRoll2(1, FRAME_1_ROLL_2);
+		int expected = SPARE_FRAME_ROLL_1 + SPARE_FRAME_ROLL_2 + SPARE_FRAME_ROLL_1; 		
+		assertEquals(expected, display.getScore(0));
 		
-		int expected = FRAME_0_ROLL_1 + FRAME_0_ROLL_2 + FRAME_1_ROLL_1 + FRAME_1_ROLL_2; 
+		expected += SPARE_FRAME_ROLL_2 + SPARE_FRAME_ROLL_1 + FRAME_0_ROLL_1;
+		assertEquals(expected, display.getScore(1));	
 		
-		assertEquals(expected, display.getScore(1));		
+		expected += FRAME_0_ROLL_1 + FRAME_0_ROLL_2;
+		assertEquals(expected, display.getScore(2));
+		
+		expected += FRAME_1_ROLL_1 + FRAME_1_ROLL_2;
+		assertEquals(expected, display.getScore(3));	
 	}
 	
 	@Test
@@ -130,4 +142,5 @@ public class BowlingTest {
 		assertEquals(expected, display.getMarks(0));	
 		assertEquals(expected, display.getMarks(1));		
 	}
+	
 }

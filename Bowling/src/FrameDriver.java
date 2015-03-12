@@ -3,14 +3,13 @@ public class FrameDriver {
 	private BowlingDisplay display;
 	
 	Frame[] frames = new Frame[10];
-	int score = 0;
 	
 	public FrameDriver(BowlingDisplay display) {
 		this.display = display;
 	}
 
 	public void performRoll1(int frameNum, int pinsHit) {
-		Frame curFrame = frames[frameNum] = new Frame(score);
+		Frame curFrame = frames[frameNum] = new Frame();
 		curFrame.performRoll1(pinsHit);
 		
 		display.setRoll1(frameNum, pinsHit);
@@ -18,7 +17,7 @@ public class FrameDriver {
 		if (frameNum > 0 && frames[frameNum-1].isSpare()) {
 			Frame prevFrame = frames[frameNum-1];
 			prevFrame.addPinsToScore(prevFrame.getScore() + pinsHit);
-			display.setScore(frameNum-1, prevFrame.getScore());
+			display.setScore(frameNum-1, getTotalScore(frameNum-1));
 		}
 		
 		if (pinsHit == 10) {
@@ -36,8 +35,15 @@ public class FrameDriver {
 		}
 		
 		display.setRoll2(frameNum, pinsHit);
-		display.setScore(frameNum, curFrame.getScore());
-		score = curFrame.getScore();
+		display.setScore(frameNum, getTotalScore(frameNum));
+	}
+	
+	private int getTotalScore(int frameNum) {
+		int total = 0;
+		for (int i = 0 ; i <= frameNum ; i++) {
+			total += frames[i].getScore();
+		}
+		return total;
 	}
 
 }

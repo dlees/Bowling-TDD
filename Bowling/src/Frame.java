@@ -4,10 +4,6 @@ public class Frame {
 	private int secondRoll = 0;
 	private int score = 0;
 	
-	public Frame(int score) {
-		this.score = score;
-	}
-
 	public void performRoll1(int pinsHit) {
 		firstRoll = pinsHit;
 		score += pinsHit;		
