@@ -16,6 +16,7 @@ public class FrameDriver {
 		if (last_was_spare) {
 			display.setScore(frameNum-1, score);
 			score += pinsHit;
+			last_was_spare = false;
 		}
 		
 	}
