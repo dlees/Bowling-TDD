@@ -12,14 +12,18 @@ public class Frame {
 		secondRoll = pinsHit;
 	}
 	
-	public int getFirstRoll() {
-		return firstRoll;
-	}
-
-	public int getSecondRoll() {
-		return secondRoll;
+	public boolean isSpare() {
+		return getBaseScore() == 10;
 	}
 	
+	public boolean isStrike() {
+		return firstRoll == 10;
+	}
+
+	public void setNextFrame(Frame frame) {
+		nextFrame = frame;
+	}
+		
 	public int getScore() {
 		if (nextFrame == null) {
 			return getBaseScore();
@@ -32,19 +36,20 @@ public class Frame {
 		}
 	}
 
-	private int getBaseScore() {
-		return firstRoll + secondRoll;
-	}
-	
-	public boolean isSpare() {
-		return getBaseScore() == 10;
-	}
-	
-	public boolean isStrike() {
-		return firstRoll == 10;
+	private int getFirstRoll() {
+		return firstRoll;
 	}
 
-	public void setNextFrame(Frame frame) {
-		nextFrame = frame;
+	private int getSecondRoll() {
+		// if this is a strike, there is no second roll
+		// use the first roll of the next frame
+		if (isStrike() && nextFrame != null) {
+			return nextFrame.getFirstRoll();
+		}
+		return secondRoll;
+	}
+	
+	private int getBaseScore() {
+		return firstRoll + secondRoll;
 	}
 }

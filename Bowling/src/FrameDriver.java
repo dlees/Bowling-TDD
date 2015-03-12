@@ -18,14 +18,11 @@ public class FrameDriver {
 		curFrame.performRoll1(pinsHit);
 		
 		display.setRoll1(frameNum, pinsHit);
-		
-		if (frameNum > 0 && frames[frameNum-1].isSpare()) {
-			display.setScore(frameNum-1, getTotalScore(frameNum-1));
-		}
-		
 		if (curFrame.isStrike()) {
 			display.setMark(frameNum, BowlingDisplay.STRIKE);			
 		}		
+		
+		updateDisplayScores(frameNum);
 	}
 
 	public void performRoll2(int frameNum, int pinsHit) {
@@ -36,18 +33,16 @@ public class FrameDriver {
 			display.setMark(frameNum, BowlingDisplay.SPARE);
 		}
 
-		if (frameNum > 0 && frames[frameNum-1].isStrike()) {
-			display.setScore(frameNum-1, getTotalScore(frameNum-1));
-		}
-		
 		display.setRoll2(frameNum, pinsHit);
-		display.setScore(frameNum, getTotalScore(frameNum));
+		
+		updateDisplayScores(frameNum);
 	}
 	
-	private int getTotalScore(int frameNum) {
+	private int updateDisplayScores(int frameNum) {
 		int total = 0;
 		for (int i = 0 ; i <= frameNum ; i++) {
 			total += frames[i].getScore();
+			display.setScore(i, total);
 		}
 		return total;
 	}
