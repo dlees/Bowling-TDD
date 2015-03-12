@@ -180,5 +180,26 @@ public class BowlingTest {
 		
 		expected += FRAME_1_ROLL_1 + FRAME_1_ROLL_2; 
 		assertEquals(expected, display.getScore(2));		
+	}	
+	
+	@Test
+	public void strike_score_counts_strike_as_1_roll() {
+		MockedBowlingDisplay display = new MockedBowlingDisplay();
+		
+		FrameDriver frame = new FrameDriver(display);
+
+		frame.performRoll1(0, STRIKE_ROLL);
+		frame.performRoll1(1, STRIKE_ROLL);
+		frame.performRoll1(2, FRAME_1_ROLL_1);
+		frame.performRoll2(2, FRAME_1_ROLL_2);
+
+		int expected = 20 + FRAME_1_ROLL_1 ; 		
+		assertEquals(expected, display.getScore(0));
+		
+		expected += STRIKE_ROLL + FRAME_1_ROLL_1 + FRAME_1_ROLL_2; 
+		assertEquals(expected, display.getScore(1));	
+		
+		expected += FRAME_1_ROLL_1 + FRAME_1_ROLL_2; 
+		assertEquals(expected, display.getScore(2));		
 	}
 }
