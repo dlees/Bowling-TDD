@@ -256,9 +256,9 @@ public class BowlingTest {
 
 		int expected = 273;
 		assertEquals(expected, display.getScore(9));
-		
-		int expectedMark = BowlingDisplay.STRIKE; 
-		assertEquals(expectedMark, display.getFinalMark());
+
+		assertEquals(BowlingDisplay.SPARE, display.getMarks(9));		
+		assertEquals(BowlingDisplay.STRIKE, display.getFinalMark());
 	}
 	
 	@Test
