@@ -100,4 +100,18 @@ public class BowlingTest {
 		
 		assertEquals(expected, display.getScore(0));		
 	}
+
+	@Test
+	public void a_frame_is_marked_strike_if_first_roll_is_10() {
+		MockedBowlingDisplay display = new MockedBowlingDisplay();
+		
+		FrameDriver frame = new FrameDriver(display);
+		
+		frame.performRoll1(0, STRIKE_ROLL);
+
+		int expected = BowlingDisplay.STRIKE; 
+		
+		assertEquals(expected, display.getMarks(0));		
+	}
+	
 }
