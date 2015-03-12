@@ -160,4 +160,25 @@ public class BowlingTest {
 		assertEquals(expected, display.getScore(1));		
 	}
 	
+	@Test
+	public void a_spare_after_a_strike_makes_strike_20() {
+		MockedBowlingDisplay display = new MockedBowlingDisplay();
+		
+		FrameDriver frame = new FrameDriver(display);
+
+		frame.performRoll1(0, STRIKE_ROLL);
+		frame.performRoll1(1, SPARE_FRAME_ROLL_1);
+		frame.performRoll2(1, SPARE_FRAME_ROLL_2);
+		frame.performRoll1(2, FRAME_1_ROLL_1);
+		frame.performRoll2(2, FRAME_1_ROLL_2);
+
+		int expected = 20; 		
+		assertEquals(expected, display.getScore(0));
+		
+		expected += SPARE_FRAME_ROLL_1 + SPARE_FRAME_ROLL_2 + FRAME_1_ROLL_1; 
+		assertEquals(expected, display.getScore(1));		
+		
+		expected += FRAME_1_ROLL_1 + FRAME_1_ROLL_2; 
+		assertEquals(expected, display.getScore(2));		
+	}
 }
