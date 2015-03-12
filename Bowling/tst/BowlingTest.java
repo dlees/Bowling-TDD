@@ -234,6 +234,31 @@ public class BowlingTest {
 		
 		FrameDriver frame = new FrameDriver(display);
 
+		getToTenth(frame);
+		frame.performRoll1(9, SPARE_FRAME_ROLL_1);
+		frame.performRoll2(9, SPARE_FRAME_ROLL_2);
+		frame.performFinalRoll(STRIKE_ROLL);
+
+		assertEquals(STRIKE_ROLL, display.getFinalRoll());
+		
+		int expectedMark = BowlingDisplay.STRIKE; 
+		assertEquals(expectedMark, display.getFinalMark());
+	}
+	
+	@Test
+	public void tenth_frame_needs_final_roll_if_spare() {
+		MockedBowlingDisplay display = new MockedBowlingDisplay();
+		
+		FrameDriver frame = new FrameDriver(display);
+
+		getToTenth(frame);
+		frame.performRoll1(9, FRAME_1_ROLL_1);
+		frame.performRoll2(9, FRAME_1_ROLL_2);
+
+		assertEquals(0, display.getFinalRoll());
+	}
+
+	private void getToTenth(FrameDriver frame) {
 		frame.performRoll1(0, STRIKE_ROLL);
 		frame.performRoll1(1, STRIKE_ROLL);
 		frame.performRoll1(2, STRIKE_ROLL);
@@ -243,9 +268,5 @@ public class BowlingTest {
 		frame.performRoll1(6, STRIKE_ROLL);
 		frame.performRoll1(7, STRIKE_ROLL);
 		frame.performRoll1(8, STRIKE_ROLL);
-		frame.performRoll1(9, FRAME_1_ROLL_1);
-		frame.performRoll2(9, FRAME_1_ROLL_2);
-
-		assertEquals(0, display.getFinalRoll());
 	}
 }

@@ -47,4 +47,8 @@ public class FrameDriver {
 		return total;
 	}
 
+	public void performFinalRoll(int pinsHit) {
+		
+	}
+
 }
