@@ -20,7 +20,7 @@ public class FrameDriver {
 			display.setScore(frameNum-1, getTotalScore(frameNum-1));
 		}
 		
-		if (pinsHit == 10) {
+		if (curFrame.isStrike()) {
 			display.setMark(frameNum, BowlingDisplay.STRIKE);			
 		}
 		

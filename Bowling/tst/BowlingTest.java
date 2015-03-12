@@ -114,19 +114,6 @@ public class BowlingTest {
 	}
 
 	@Test
-	public void a_frame_is_marked_strike_if_first_roll_is_10() {
-		MockedBowlingDisplay display = new MockedBowlingDisplay();
-		
-		FrameDriver frame = new FrameDriver(display);
-		
-		frame.performRoll1(0, STRIKE_ROLL);
-
-		int expected = BowlingDisplay.STRIKE; 
-		
-		assertEquals(expected, display.getMarks(0));		
-	}
-
-	@Test
 	public void two_spares_in_a_row_are_marked_spare() {
 		MockedBowlingDisplay display = new MockedBowlingDisplay();
 		
@@ -141,6 +128,37 @@ public class BowlingTest {
 		
 		assertEquals(expected, display.getMarks(0));	
 		assertEquals(expected, display.getMarks(1));		
+	}
+	
+	@Test
+	public void a_frame_is_marked_strike_if_first_roll_is_10() {
+		MockedBowlingDisplay display = new MockedBowlingDisplay();
+		
+		FrameDriver frame = new FrameDriver(display);
+		
+		frame.performRoll1(0, STRIKE_ROLL);
+
+		int expected = BowlingDisplay.STRIKE; 
+		
+		assertEquals(expected, display.getMarks(0));		
+	}
+
+	
+	@Test
+	public void a_strikes_value_is_10_plus_the_next_two_rolls() {
+		MockedBowlingDisplay display = new MockedBowlingDisplay();
+		
+		FrameDriver frame = new FrameDriver(display);
+
+		frame.performRoll1(0, STRIKE_ROLL);
+		frame.performRoll1(1, FRAME_1_ROLL_1);
+		frame.performRoll1(1, FRAME_1_ROLL_2);
+
+		int expected = 10 + FRAME_1_ROLL_1 + FRAME_1_ROLL_2; 		
+		assertEquals(expected, display.getScore(0));	
+		
+		expected += FRAME_1_ROLL_1 + FRAME_0_ROLL_2; 
+		assertEquals(expected, display.getScore(1));		
 	}
 	
 }
