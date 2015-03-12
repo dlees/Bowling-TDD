@@ -1,23 +1,24 @@
 
 public class FrameDriver {
 	private BowlingDisplay display;
-	private int firstRoll = 0;
-	private int score = 0;
-	private boolean last_was_spare = false;
+	
+	Frame[] frames = new Frame[10];
+	int score = 0;
 	
 	public FrameDriver(BowlingDisplay display) {
 		this.display = display;
 	}
 
 	public void performRoll1(int frameNum, int pinsHit) {
-		firstRoll = pinsHit;
-		score += pinsHit;
+		Frame curFrame = frames[frameNum] = new Frame(score);
+		curFrame.performRoll1(pinsHit);
+		
 		display.setRoll1(frameNum, pinsHit);
 		
-		if (last_was_spare) {
-			display.setScore(frameNum-1, score);
-			score += pinsHit;
-			last_was_spare = false;
+		if (frameNum > 0 && frames[frameNum-1].isSpare()) {
+			Frame prevFrame = frames[frameNum-1];
+			prevFrame.addPinsToScore(prevFrame.getScore() + pinsHit);
+			display.setScore(frameNum-1, prevFrame.getScore());
 		}
 		
 		if (pinsHit == 10) {
@@ -26,16 +27,17 @@ public class FrameDriver {
 		
 	}
 
-	public void performRoll2(int frameNum, int pinsHit) {		
-		score += pinsHit;
+	public void performRoll2(int frameNum, int pinsHit) {
+		Frame curFrame = frames[frameNum];
+		curFrame.performRoll2(pinsHit);
 		
-		if (firstRoll + pinsHit == 10) {
+		if (curFrame.isSpare()) {
 			display.setMark(frameNum, BowlingDisplay.SPARE);
-			last_was_spare = true;
 		}
 		
 		display.setRoll2(frameNum, pinsHit);
-		display.setScore(frameNum, score);	
+		display.setScore(frameNum, curFrame.getScore());
+		score = curFrame.getScore();
 	}
 
 }
