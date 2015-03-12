@@ -226,5 +226,26 @@ public class BowlingTest {
 		
 		expected += FRAME_1_ROLL_1 + FRAME_1_ROLL_2; 
 		assertEquals(expected, display.getScore(3));		
+	}	
+	
+	@Test
+	public void tenth_frame_ends_after_roll_2_with_no_mark() {
+		MockedBowlingDisplay display = new MockedBowlingDisplay();
+		
+		FrameDriver frame = new FrameDriver(display);
+
+		frame.performRoll1(0, STRIKE_ROLL);
+		frame.performRoll1(1, STRIKE_ROLL);
+		frame.performRoll1(2, STRIKE_ROLL);
+		frame.performRoll1(3, STRIKE_ROLL);
+		frame.performRoll1(4, STRIKE_ROLL);
+		frame.performRoll1(5, STRIKE_ROLL);
+		frame.performRoll1(6, STRIKE_ROLL);
+		frame.performRoll1(7, STRIKE_ROLL);
+		frame.performRoll1(8, STRIKE_ROLL);
+		frame.performRoll1(9, FRAME_1_ROLL_1);
+		frame.performRoll2(9, FRAME_1_ROLL_2);
+
+		assertEquals(0, display.getFinalRoll());
 	}
 }
