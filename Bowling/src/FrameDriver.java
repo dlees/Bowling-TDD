@@ -18,6 +18,7 @@ public class FrameDriver {
 		curFrame.performRoll1(pinsHit);
 		
 		display.setRoll1(frameNum, pinsHit);
+		
 		if (curFrame.isStrike()) {
 			display.setMark(frameNum, BowlingDisplay.STRIKE);			
 		}		
@@ -48,7 +49,14 @@ public class FrameDriver {
 	}
 
 	public void performFinalRoll(int pinsHit) {
+		Frame curFrame = frames[9];
+
+		curFrame.performRoll3(pinsHit);
+
+		display.setFinalMark(9, curFrame.getFinalMark());
 		
+		display.setFinalRoll(9, pinsHit);
+		updateDisplayScores(9);		
 	}
 
 }

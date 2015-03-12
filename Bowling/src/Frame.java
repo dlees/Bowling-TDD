@@ -1,7 +1,10 @@
+import java.awt.DisplayMode;
+
 
 public class Frame {
 	private int firstRoll = 0;
 	private int secondRoll = 0;
+	private int thirdRoll = 0;
 	Frame nextFrame = null;
 	
 	public void performRoll1(int pinsHit) {
@@ -11,6 +14,10 @@ public class Frame {
 	public void performRoll2(int pinsHit) {
 		secondRoll = pinsHit;
 	}
+	
+	public void performRoll3(int pinsHit) {
+		thirdRoll = pinsHit;
+	}	
 	
 	public boolean isSpare() {
 		return getBaseScore() == 10;
@@ -23,7 +30,14 @@ public class Frame {
 	public void setNextFrame(Frame frame) {
 		nextFrame = frame;
 	}
-		
+	
+	public int getFinalMark() {
+		if (thirdRoll == 10) {
+			return BowlingDisplay.STRIKE;
+		}
+		return 0;			
+	}
+	
 	public int getScore() {
 		if (nextFrame == null) {
 			return getBaseScore();
@@ -50,6 +64,6 @@ public class Frame {
 	}
 	
 	private int getBaseScore() {
-		return firstRoll + secondRoll;
+		return firstRoll + secondRoll + thirdRoll;
 	}
 }
