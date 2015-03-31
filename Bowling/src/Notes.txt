@@ -22,4 +22,8 @@ but it seemed to work out really well. The final frame was a lot easier than I t
 and I probably wouldn't have came up with this solution without TDD.
 TDD definitely helped me think of exactly what the algorithm I needed to come up with one step at a time.
  
-It's definitely not the prettiest code, but it's alright. 
+It's definitely not the prettiest code, but it's alright. The only thing I would really change is
+checking for strikes and spares in the FrameDriver just to set the mark. 
+
+Another curious thing (that might make this a bit harder) is if the second roll in the final frame
+needs to show its mark. I don't see an API in display to support this, so I'm not implementing it.
